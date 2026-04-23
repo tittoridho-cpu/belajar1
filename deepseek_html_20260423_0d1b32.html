@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalRush - Berita Bola</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            color: #c41e3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+        }
+        button {
+            background: #c41e3a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .news-card {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .category {
+            color: #ffd700;
+            font-size: 12px;
+        }
+        .delete-btn {
+            background: #333;
+            padding: 5px 10px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .nav-link {
+            background: #1a1a1a;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .nav-link.active {
+            background: #c41e3a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚽ GOALRUSH</h1>
+    <p style="text-align: center; margin-bottom: 20px;">Berita Bola Terkini</p>
+
+    <!-- Form Tambah Berita -->
+    <div style="background: #1a1a1a; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+        <h3>✍️ Tulis Berita</h3>
+        <div class="form-group">
+            <input type="text" id="titleInput" placeholder="Judul berita...">
+        </div>
+        <div class="form-group">
+            <textarea id="descInput" placeholder="Isi berita..." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <select id="categorySelect">
+                <option value="Liga Inggris">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Liga Inggris</option>
+                <option value="Liga Spanyol">🇪🇸 Liga Spanyol</option>
+                <option value="Liga Italia">🇮🇹 Liga Italia</option>
+                <option value="Liga Champions">🏆 Liga Champions</option>
+                <option value="Liga Indonesia">🇮🇩 Liga Indonesia</option>
+            </select>
+        </div>
+        <button onclick="addNews()">📝 Terbitkan</button>
+    </div>
+
+    <!-- Filter Kategori -->
+    <div class="nav-links">
+        <div class="nav-link active" onclick="filterNews('all')">Semua</div>
+        <div class="nav-link" onclick="filterNews('Liga Inggris')">Liga Inggris</div>
+        <div class="nav-link" onclick="filterNews('Liga Spanyol')">Liga Spanyol</div>
+        <div class="nav-link" onclick="filterNews('Liga Italia')">Liga Italia</div>
+        <div class="nav-link" onclick="filterNews('Liga Champions')">Champions</div>
+        <div class="nav-link" onclick="filterNews('Liga Indonesia')">Liga Indonesia</div>
+    </div>
+
+    <!-- Daftar Berita -->
+    <div id="newsList"></div>
+
+    <script>
+        let newsItems = [
+            {
+                id: 1,
+                title: "Man City Puncaki Premier League",
+                description: "Manchester City berhasil mengambil alih puncak klasemen setelah kemenangan telak.",
+                category: "Liga Inggris",
+                date: new Date().toLocaleString()
+            },
+            {
+                id: 2,
+                title: "Barcelona Takut Kehilangan Lamine Yamal",
+                description: "Bintang muda Barcelona dikabarkan cedera dan terancam absen hingga akhir musim.",
+                category: "Liga Spanyol",
+                date: new Date().toLocaleString()
+            },
+            {
+                id: 3,
+                title: "Timnas Indonesia Berpeluang Juara ASEAN Cup",
+                description: "Pengamat sepakbola menilai peluang Timnas Indonesia sangat terbuka.",
+                category: "Liga Indonesia",
+                date: new Date().toLocaleString()
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function saveNews() {
+            localStorage.setItem('goalrush_news', JSON.stringify(newsItems));
+        }
+
+        function loadNews() {
+            const saved = localStorage.getItem('goalrush_news');
+            if (saved) {
+                newsItems = JSON.parse(saved);
+            }
+            renderNews();
+        }
+
+        function addNews() {
+            const title = document.getElementById('titleInput').value.trim();
+            const desc = document.getElementById('descInput').value.trim();
+            const category = document.getElementById('categorySelect').value;
+
+            if (!title || !desc) {
+                alert('Judul dan deskripsi harus diisi!');
+                return;
+            }
+
+            const newNews = {
+                id: Date.now(),
+                title: title,
+                description: desc,
+                category: category,
+                date: new Date().toLocaleString()
+            };
+
+            newsItems.unshift(newNews);
+            saveNews();
+            
+            document.getElementById('titleInput').value = '';
+            document.getElementById('descInput').value = '';
+            
+            renderNews();
+            alert('Berita berhasil ditambahkan!');
+        }
+
+        function deleteNews(id) {
+            if (confirm('Hapus berita ini?')) {
+                newsItems = newsItems.filter(item => item.id !== id);
+                saveNews();
+                renderNews();
+            }
+        }
+
+        function filterNews(category) {
+            currentFilter = category;
+            
+            // Update active class
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.innerText === 'Semua' && category === 'all') {
+                    link.classList.add('active');
+                } else if (link.innerText === category) {
+                    link.classList.add('active');
+                }
+            });
+            
+            renderNews();
+        }
+
+        function renderNews() {
+            const container = document.getElementById('newsList');
+            let filtered = newsItems;
+            
+            if (currentFilter !== 'all') {
+                filtered = newsItems.filter(item => item.category === currentFilter);
+            }
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888;">Belum ada berita</p>';
+                return;
+            }
+            
+            container.innerHTML = filtered.map(news => `
+                <div class="news-card">
+                    <div class="category">${news.category}</div>
+                    <h3>${escapeHtml(news.title)}</h3>
+                    <p>${escapeHtml(news.description)}</p>
+                    <small>🕒 ${news.date}</small>
+                    <div><button class="delete-btn" onclick="deleteNews(${news.id})">🗑️ Hapus</button></div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // Load data saat halaman dibuka
+        loadNews();
+
+        // Service Worker untuk PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/GoalRush/service-worker.js').catch(err => {
+                console.log('SW Error:', err);
+            });
+        }
+    </script>
+
+    <!-- Service Worker sederhana inline untuk testing -->
+    <script>
+        // Service Worker sederhana jika file eksternal tidak ada
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `self.addEventListener('fetch', event => {
+                    event.respondWith(fetch(event.request));
+                });`;
+                
+                const blob = new Blob([swCode], {type: 'application/javascript'});
+                const url = URL.createObjectURL(blob);
+                navigator.serviceWorker.register(url);
+            });
+        }
+    </script>
+</body>
+</html>
