@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="id">
 
@@ -859,4 +860,867 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#c41e3a" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icons/icon-192x192-A.png" type="image/png" />
+    <title>GoalRush - Berita Bola Terkini</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #c41e3a;
+            --primary-dark: #8b0000;
+            --primary-gold: #ffd700;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text-light: #ffffff;
+            --text-gray: #cccccc;
+            --text-muted: #888888;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.95) 0%, rgba(139, 0, 0, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&h=300&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: url('https://cdn-icons-png.flaticon.com/512/3095/3095110.png') center/cover no-repeat;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            font-size: 12px;
+            color: var(--primary-gold);
+            display: block;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .nav-bar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 12px 20px;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-link.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 24px;
+            gap: 20px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .hero-text p {
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 140px;
+            background: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnBpcW80M2Y4cGNvN2N1Y3Z6b2F2a2ZqOWV0bDZ0aG5ndWpudGhkaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abB06u9bNzA8LC8/giphy.gif') center/cover no-repeat;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .breaking-wrapper {
+            background: linear-gradient(90deg, #1a1a2e, #16213e);
+            border-left: 4px solid var(--primary-red);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .breaking-news {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .breaking-label {
+            background: var(--primary-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .breaking-text {
+            flex: 1;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-gold);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .row-2cols {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .featured-news {
+            margin-bottom: 32px;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-light));
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 24px;
+        }
+
+        .featured-content h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary-red);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .featured-image {
+            background: url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=400&h=300&fit=crop') center/cover;
+            border-radius: 16px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image::after {
+            content: "⚽";
+            font-size: 60px;
+            opacity: 0.3;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-red);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-category {
+            font-size: 11px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-excerpt {
+            color: var(--text-gray);
+            font-size: 13px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-delete {
+            background: rgba(196, 30, 58, 0.2);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: var(--primary-red);
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+        }
+
+        .footer {
+            background: var(--bg-card);
+            margin-top: 48px;
+            padding: 32px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content h2 {
+                font-size: 22px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .row-2cols {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 120px;
+            }
+
+            .hero-text h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div>
+                    <h1>GOAL<span>RUSH</span></h1>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span>📰</span>
+                    <span>Total Berita: <strong id="totalNews">0</strong></span>
+                </div>
+                <div class="stat-item">
+                    <span>⚡</span>
+                    <span>Update: <strong id="updateTime">Hari ini</strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav-bar">
+            <div class="nav-links" id="navLinks">
+                <a class="nav-link active" data-filter="all">⚽ SEMUA</a>
+                <a class="nav-link" data-filter="Liga Inggris">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PREMIER LEAGUE</a>
+                <a class="nav-link" data-filter="Liga Spanyol">🇪🇸 LA LIGA</a>
+                <a class="nav-link" data-filter="Liga Italia">🇮🇹 SERIE A</a>
+                <a class="nav-link" data-filter="Liga Champions">🏆 CHAMPIONS</a>
+                <a class="nav-link" data-filter="Liga Indonesia">🇮🇩 LIGA INDONESIA</a>
+                <a class="nav-link" data-filter="Transfer">🔄 TRANSFER</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>🏆 PIALA DUNIA 2026</h2>
+                    <p>Ikuti terus perkembangan timnas menuju Piala Dunia 2026! Jadwal, skor, dan berita eksklusif hanya
+                        di GoalRush</p>
+                    <span class="category-badge">HOT NEWS 🔥</span>
+                </div>
+                <div class="hero-image" title="Animasi selebrasi gol"></div>
+            </div>
+        </div>
+
+        <div class="breaking-wrapper">
+            <div class="breaking-news">
+                <span class="breaking-label">BREAKING NEWS</span>
+                <span class="breaking-text" id="breakingText">Memuat berita terbaru...</span>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <div class="section-title">
+                <span>✍️</span> Tulis Berita Baru
+            </div>
+            <div class="form-group">
+                <input type="text" id="titleInput"
+                    placeholder="Judul berita... contoh: 'Manchester United Rebut Puncak Klasemen'" />
+            </div>
+            <div class="form-group">
+                <textarea id="descInput" placeholder="Isi berita / deskripsi singkat..."></textarea>
+            </div>
+            <div class="row-2cols">
+                <select id="categorySelect">
+                    <option value="Liga Inggris">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Liga Inggris - Premier League</option>
+                    <option value="Liga Spanyol">🇪🇸 Liga Spanyol - La Liga</option>
+                    <option value="Liga Italia">🇮🇹 Liga Italia - Serie A</option>
+                    <option value="Liga Champions">🏆 Liga Champions UEFA</option>
+                    <option value="Liga Indonesia">🇮🇩 Liga Indonesia - BRI Liga 1</option>
+                    <option value="Transfer">🔄 Bursa Transfer & Rumor</option>
+                </select>
+                <button class="btn btn-primary" onclick="addNews()">📝 Terbitkan Berita</button>
+            </div>
+        </div>
+
+        <div class="featured-news" id="featuredSection"></div>
+
+        <div style="margin-top: 16px;">
+            <h3 style="margin-bottom: 16px; color: var(--primary-gold);">📌 BERITA TERKINI</h3>
+            <div class="news-grid" id="newsGrid"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 GoalRush - Portal Berita Bola Terpercaya | Update 24 Jam</p>
+        <p style="margin-top: 8px; font-size: 11px;">#GoalRush | Informasi Seputar Dunia Sepakbola</p>
+    </footer>
+
+    <script>
+        let newsItems = [
+            {
+                id: 1,
+                title: "Jakarta Popsivo Polwan Rebut Peringkat Ketiga Proliga 2026",
+                description: "Bertanding di GOR Amongrogo, Yogyakarta, Rabu (22/4/2026) malam WIB, pada leg kedua perebutan tempat ketiga, Jakarta Popsivo Polwan menang dramatis 3-2.",
+                category: "Liga Indonesia",
+                timestamp: Date.now() - 3600000,
+                dateStr: "1 jam lalu"
+            },
+            {
+                id: 2,
+                title: "Man City Ambil Alih Puncak Premier League",
+                description: "Manchester City berhasil mengambil alih puncak klasemen Premier League usai kemenangan telak atas lawannya.",
+                category: "Liga Inggris",
+                timestamp: Date.now() - 7200000,
+                dateStr: "2 jam lalu"
+            },
+            {
+                id: 3,
+                title: "Barcelona Deg-degan, Lamine Yamal Berpotensi Absen",
+                description: "Bintang muda Barcelona dikabarkan mengalami cedera yang cukup serius.",
+                category: "Liga Spanyol",
+                timestamp: Date.now() - 10800000,
+                dateStr: "3 jam lalu"
+            },
+            {
+                id: 4,
+                title: "Peluang Timnas Indonesia Juara ASEAN Cup Sangat Terbuka",
+                description: "Pengamat sepakbola menilai Timnas Indonesia punya peluang besar menjadi juara.",
+                category: "Liga Indonesia",
+                timestamp: Date.now() - 14400000,
+                dateStr: "4 jam lalu"
+            },
+            {
+                id: 5,
+                title: "Utusan Donald Trump Dorong Italia Gantikan Iran",
+                description: "Isu kontroversial muncul dimana utusan khusus AS mendorong Italia untuk menggantikan posisi Iran di Piala Dunia 2026.",
+                category: "Transfer",
+                timestamp: Date.now() - 18000000,
+                dateStr: "5 jam lalu"
+            },
+            {
+                id: 6,
+                title: "Marselino Ferdinan Siap Kembali Bela AS Trencin",
+                description: "Pemain timnas Indonesia ini siap kembali unjuk gigi usai cedera.",
+                category: "Liga Indonesia",
+                timestamp: Date.now() - 21600000,
+                dateStr: "6 jam lalu"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function formatRelativeTime(timestamp) {
+            const diff = Date.now() - timestamp;
+            const hours = Math.floor(diff / 3600000);
+            if (hours < 1) return 'Baru saja';
+            if (hours < 24) return `${hours} jam lalu`;
+            return `${Math.floor(hours / 24)} hari lalu`;
+        }
+
+        function saveToLocal() {
+            localStorage.setItem('goalrush_news', JSON.stringify(newsItems));
+        }
+
+        function loadFromLocal() {
+            const saved = localStorage.getItem('goalrush_news');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed && parsed.length) {
+                    newsItems = parsed;
+                }
+            }
+            renderAll();
+        }
+
+        function addNews() {
+            const title = document.getElementById('titleInput').value.trim();
+            const desc = document.getElementById('descInput').value.trim();
+            const category = document.getElementById('categorySelect').value;
+
+            if (!title || !desc) {
+                alert('Judul dan deskripsi berita harus diisi!');
+                return;
+            }
+
+            const newNews = {
+                id: Date.now(),
+                title: title,
+                description: desc,
+                category: category,
+                timestamp: Date.now(),
+                dateStr: formatRelativeTime(Date.now())
+            };
+
+            newsItems.unshift(newNews);
+            saveToLocal();
+
+            document.getElementById('titleInput').value = '';
+            document.getElementById('descInput').value = '';
+
+            renderAll();
+            showNotification('Berita berhasil diterbitkan!');
+        }
+
+        function deleteNews(id) {
+            if (confirm('Hapus berita ini?')) {
+                newsItems = newsItems.filter(item => item.id !== id);
+                saveToLocal();
+                renderAll();
+            }
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-filter') === filter || (filter === 'all' && link.getAttribute('data-filter') === 'all')) {
+                    link.classList.add('active');
+                }
+            });
+            renderAll();
+        }
+
+        function renderFeatured(newsList) {
+            const featuredDiv = document.getElementById('featuredSection');
+            if (newsList.length === 0) {
+                featuredDiv.innerHTML = '';
+                return;
+            }
+
+            const featured = newsList[0];
+            featuredDiv.innerHTML = `
+                <div class="featured-card">
+                    <div class="featured-content">
+                        <span class="category-badge">${featured.category}</span>
+                        <h2>${escapeHtml(featured.title)}</h2>
+                        <p style="color: var(--text-gray); margin: 12px 0;">${escapeHtml(featured.description.substring(0, 150))}${featured.description.length > 150 ? '...' : ''}</p>
+                        <div class="featured-meta">
+                            <span>🕒 ${featured.dateStr || formatRelativeTime(featured.timestamp)}</span>
+                            <span>👁️ 1.234x dibaca</span>
+                        </div>
+                    </div>
+                    <div class="featured-image" title="Gambar ilustrasi pertandingan sepakbola"></div>
+                </div>
+            `;
+        }
+
+        function renderNewsGrid() {
+            const grid = document.getElementById('newsGrid');
+            let filtered = [...newsItems];
+
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(item => item.category === currentFilter);
+            }
+
+            filtered.sort((a, b) => b.timestamp - a.timestamp);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><h3>Belum ada berita</h3><p>Silakan tambahkan berita terbaru</p></div>`;
+                return;
+            }
+
+            const gridItems = currentFilter === 'all' && filtered.length > 1 ? filtered.slice(1) : filtered;
+
+            if (gridItems.length === 0 && filtered.length > 0) {
+                grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📰</div><p>Berita lainnya akan segera hadir</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = gridItems.map(news => `
+                <div class="news-card">
+                    <div class="card-content">
+                        <div class="card-category">${news.category}</div>
+                        <div class="card-title">${escapeHtml(news.title)}</div>
+                        <div class="card-excerpt">${escapeHtml(news.description.substring(0, 100))}${news.description.length > 100 ? '...' : ''}</div>
+                        <div class="card-footer">
+                            <span>🕒 ${news.dateStr || formatRelativeTime(news.timestamp)}</span>
+                            <button class="btn-delete" onclick="deleteNews(${news.id})">🗑️ Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateBreaking() {
+            if (newsItems.length > 0) {
+                const latest = [...newsItems].sort((a, b) => b.timestamp - a.timestamp)[0];
+                document.getElementById('breakingText').innerHTML = `${latest.title} - ${latest.description.substring(0, 100)}...`;
+            } else {
+                document.getElementById('breakingText').innerHTML = 'Selamat datang di GoalRush - Portal Berita Bola Terkini';
+            }
+        }
+
+        function updateStatsUI() {
+            document.getElementById('totalNews').innerText = newsItems.length;
+            const now = new Date();
+            document.getElementById('updateTime').innerHTML = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function (m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function showNotification(msg) {
+            const notif = document.createElement('div');
+            notif.innerText = msg;
+            notif.style.position = 'fixed';
+            notif.style.bottom = '20px';
+            notif.style.right = '20px';
+            notif.style.backgroundColor = '#c41e3a';
+            notif.style.color = 'white';
+            notif.style.padding = '12px 20px';
+            notif.style.borderRadius = '30px';
+            notif.style.zIndex = '9999';
+            notif.style.fontSize = '14px';
+            notif.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2500);
+        }
+
+        function renderAll() {
+            newsItems.forEach(item => {
+                if (!item.dateStr && item.timestamp) {
+                    item.dateStr = formatRelativeTime(item.timestamp);
+                } else if (!item.timestamp) {
+                    item.timestamp = Date.now() - (Math.random() * 86400000);
+                    item.dateStr = formatRelativeTime(item.timestamp);
+                }
+            });
+
+            if (currentFilter === 'all' && newsItems.length > 0) {
+                renderFeatured(newsItems);
+            } else {
+                const filteredFeatured = currentFilter === 'all' ? newsItems : newsItems.filter(n => n.category === currentFilter);
+                if (filteredFeatured.length > 0) {
+                    renderFeatured(filteredFeatured);
+                } else {
+                    document.getElementById('featuredSection').innerHTML = '';
+                }
+            }
+            renderNewsGrid();
+            updateBreaking();
+            updateStatsUI();
+            saveToLocal();
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const filter = link.getAttribute('data-filter');
+                setFilter(filter);
+            });
+        });
+
+        loadFromLocal();
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/GoalRush/service-worker.js')
+                    .then(() => console.log('SW Registered'))
+                    .catch(err => console.error('SW Error:', err));
+            });
+        }
+
+        window.addNews = addNews;
+        window.deleteNews = deleteNews;
+        window.setFilter = setFilter;
+    </script>
+</body>
+
+>>>>>>> Stashed changes
 </html>
